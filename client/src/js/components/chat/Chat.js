@@ -27,6 +27,10 @@ export default class Chat extends Component {
         });
     }
 
+    componentDidUpdate() {
+        this.scrollToBottom();
+    }
+
     sendMessage(newMessage) {
         const { sendMessage, userName } = this.props;
         if (newMessage.length !== 0) {
@@ -35,12 +39,16 @@ export default class Chat extends Component {
         }
     }
 
+    scrollToBottom() {
+        this.msg.scrollTo(0, this.msg.scrollHeight);
+    }
+
     render() {
         const { messages} = this.props;
         return (
             <div className="chat">
                 <div className="chat-area">
-                    <ul className="messages">
+                    <ul className="messages" ref={(e) => this.msg = e}>
                         {messages.map( (message, index) =>
                             <MessageItem message={message} key={index}/>
                         )}

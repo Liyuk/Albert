@@ -23,6 +23,14 @@ app.engine('html', ejs.renderFile);
 app.use('/static', express.static('./client/build'));
 
 var userNumber = 1;
+var robotName = '小冰';
+
+function enunicode(code){
+    code=code.replace(/[\u00FF-\uFFFF]/g,function($0){
+            return '\\u'+$0.charCodeAt().toString(16);
+    });
+    return code;
+}
 
 io.sockets.on('connection', function (socket) {
     var signedIn = false;
@@ -31,19 +39,23 @@ io.sockets.on('connection', function (socket) {
         io.sockets.emit('newMessage',{
             userName: socket.userName,
             text: text
-        })
+        });
         // robot request url
-        axios.get(`http://127.0.0.1:5000/?que=${text}`) 
-            .then(res => { 
-                console.log(res.data); 
-                io.sockets.emit('newMessage',{
-                    userName: 'Robot：',
-                    text: res.data
+        console.log(socket.userName, text);
+        if(socket.userName !== robotName) {
+            setTimeout(() => {
+                axios.get(`http://127.0.0.1:5000/?que=${enunicode(text)}`).then(res => { 
+                    console.log(res.data); 
+                    io.sockets.emit('newMessage',{
+                        userName: robotName,
+                        text: res.data.text
+                    })
                 })
-            }) 
-            .catch(error => { 
-                console.log(error); 
-            });  
+                .catch(error => { 
+                    console.log(error); 
+                });
+            }, 500);
+        }
     });
 
     socket.on('signIn', function (userName) {

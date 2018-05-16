@@ -4,8 +4,10 @@ import * as messageTypes from 'js/constants/MessageTypes'
 
 
 const initialState = {
-    messages: [{type: messageTypes.SYSTEM_MESSAGE,
-                text: 'Welcome to our chatting room!'}],
+    messages: [{
+        type: messageTypes.SYSTEM_MESSAGE,
+        text: 'Welcome to our chatting room!'
+    }],
 };
 
 export default function messages(state = initialState, action) {
