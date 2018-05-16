@@ -1,6 +1,3 @@
-/**
- * Created by hshen on 9/20/16.
- */
 const webpack = require('webpack');
 
 exports.minify = function () {
