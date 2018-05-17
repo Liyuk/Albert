@@ -1,9 +1,22 @@
 import React, { PropTypes } from 'react';
+import { Label } from 'react-bootstrap';
 import * as messageTypes from 'js/constants/MessageTypes'
+import formatDate from 'js/lib/format';
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+}
+
+const LABELCOLORS = [
+    'default', 'primary', 'success', 'info', 'warning', 'danger'
+];
 
 export default class MessageItem extends React.Component {
-
-
+    constructor() {
+        super();
+        this.createTime = formatDate(new Date(), 'Y-M-D h:m:s');
+        this.labelColor = LABELCOLORS[getRandomInt(6)];
+    }
     render() {
         const { message } = this.props;
         switch (message.type) {
@@ -11,7 +24,11 @@ export default class MessageItem extends React.Component {
                 const userNameColor = this._getUserNameColor(message.userName);
                 return (
                     <li className="user-message">
-                        <span className="user-name" style={{color: userNameColor}}>{message.userName}</span>
+                        <p>
+                            <span className="user-name" style={{color: userNameColor}}>{message.userName}</span>
+                            {message.theano && this._getLabel(message.theano)}
+                            <span className="user-time">{this.createTime}</span>
+                        </p>
                         <span className="message-body">{message.text}</span>
                     </li>
                 );
@@ -38,5 +55,9 @@ export default class MessageItem extends React.Component {
         // Calculate color
         const index = Math.abs(hash % COLORS.length);
         return COLORS[index];
+    }
+
+    _getLabel(theano) {
+        return <Label bsStyle={this.labelColor}>{theano}</Label>
     }
 }

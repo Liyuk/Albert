@@ -44,16 +44,17 @@ io.sockets.on('connection', function (socket) {
         console.log(socket.userName, text);
         if(socket.userName !== robotName) {
             setTimeout(() => {
-                axios.get(`http://127.0.0.1:5000/?que=${enunicode(text)}`).then(res => { 
-                    console.log(res.data); 
+                // axios.get(`http://127.0.0.1:5000/?que=${enunicode(text)}`).then(res => { 
+                    // console.log(res.data); 
                     io.sockets.emit('newMessage',{
                         userName: robotName,
-                        text: res.data.text
+                        text: 'mock data',
+                        theano: 'happy'
                     })
-                })
-                .catch(error => { 
-                    console.log(error); 
-                });
+                // })
+                // .catch(error => { 
+                //     console.log(error); 
+                // });
             }, 500);
         }
     });

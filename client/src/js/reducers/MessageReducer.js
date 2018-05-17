@@ -18,7 +18,8 @@ export default function messages(state = initialState, action) {
                 messages: [...state.messages, {
                     type: messageTypes.USER_MESSAGE,
                     text: message.text,
-                    userName: message.userName
+                    userName: message.userName,
+                    theano: message.theano
                 }]
             }
         case actionTypes.USER_JOINED:
