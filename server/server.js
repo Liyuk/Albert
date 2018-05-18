@@ -1,92 +1,28 @@
-// Import modules
-var express = require('express');
-var path = require('path');
-var ejs = require('ejs');
-var axios = require('axios');
+import Koa from 'koa';
+import views from 'koa-views';
+import path from 'path';
 
-// Create server
-var app = express()
-  , server = require('http').createServer(app)
-  , io = require('socket.io').listen(server);
-var port = process.env.PORT || 3000;
-server.listen(port);
+const app = new Koa();
 
-// Return index.html for '/'
-app.get('/', function (req, res) {
-    res.render('index');
+app.use(require('koa-static')(path.join(__dirname, '../build')));
+app.use(views(path.join(__dirname, '../views'), {
+    extension: 'html'
+}));
+
+app.use(async (ctx, next) => {
+    const start = new Date();
+    await next();
+    const ms = new Date() - start;
+    console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
 });
 
-// Set path for views and static resources
-app.set('views', './client/src/html');
-app.set('view engine', 'html');
-app.engine('html', ejs.renderFile);
-app.use('/static', express.static('./client/build'));
-
-var userNumber = 1;
-var robotName = '小冰';
-
-function enunicode(code){
-    code=code.replace(/[\u00FF-\uFFFF]/g,function($0){
-            return '\\u'+$0.charCodeAt().toString(16);
-    });
-    return code;
-}
-
-io.sockets.on('connection', function (socket) {
-    var signedIn = false;
-
-    socket.on('newMessage', function (text) {
-        io.sockets.emit('newMessage',{
-            userName: socket.userName,
-            text: text
-        });
-        // robot request url
-        console.log(socket.userName, text);
-        if(socket.userName !== robotName) {
-            setTimeout(() => {
-                // axios.get(`http://127.0.0.1:5000/?que=${enunicode(text)}`).then(res => { 
-                    // console.log(res.data); 
-                    io.sockets.emit('newMessage',{
-                        userName: robotName,
-                        text: 'mock data',
-                        theano: 'happy',
-                        stats: {
-                            area: 'none',
-                            food: 'chinese',
-                            pricerange: 'cheap'
-                        }
-                    })
-                // })
-                // .catch(error => { 
-                //     console.log(error); 
-                // });
-            }, 500);
-        }
-    });
-
-    socket.on('signIn', function (userName) {
-        if (signedIn) return;
-
-        // we store the username in the socket session for this client
-        socket.userName = userName;
-        ++userNumber;
-        signedIn = true;
-
-        io.sockets.emit('userJoined', {
-            userName: userName,
-            userNumber: userNumber
-        });
-    });
-
-    socket.on('disconnect', function () {
-        if (signedIn) {
-            --userNumber;
-
-            io.sockets.emit('userLeft', {
-                userName: socket.userName,
-                userNumber: userNumber
-            });
-        }
-    });
-
+// response
+app.use(async (ctx) => {
+    await ctx.render('index.html');
 });
+
+app.listen(8080);
+
+console.log("server start, please visit http://127.0.0.1:8080");
+
+module.exports = app;

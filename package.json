@@ -1,49 +1,44 @@
 {
-  "name": "Albert",
+  "name": "albert",
   "version": "1.0.0",
-  "description": "",
+  "description": "a chatting room",
+  "main": "index.js",
   "scripts": {
-    "dev": "webpack",
-    "start": "node server/server.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server/index.js",
+    "dev": "webpack-dev-server --config webpack.config.js --progress --colors --mode development"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Liyuk/Albert.git"
+  },
+  "keywords": [
+    "chatroom"
+  ],
+  "author": "liyuk",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Liyuk/Albert/issues"
+  },
+  "homepage": "https://github.com/Liyuk/Albert#readme",
   "dependencies": {
-    "ejs": "^2.5.2",
-    "express": "^4.14.0",
-    "material-ui": "^0.15.4",
-    "moment": "^2.15.1",
-    "node-uuid": "^1.4.7",
-    "react": "^15.3.2",
-    "react-bootstrap": "^0.30.3",
-    "react-dom": "^15.3.2",
-    "react-redux": "^4.4.5",
-    "react-router": "^2.8.1",
-    "redux": "^3.6.0",
-    "redux-auth": "0.0.5-beta5",
-    "redux-thunk": "^2.1.0",
-    "socket.io": "^1.4.8",
-    "socket.io-client": "^1.4.8"
+    "koa": "^2.5.1",
+    "koa-static": "^4.0.3",
+    "koa-views": "^6.1.4",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "webpack": "^4.8.3"
   },
   "devDependencies": {
-    "axios": "^0.18.0",
-    "babel-core": "^6.9.1",
-    "babel-eslint": "^6.1.2",
-    "babel-loader": "^6.2.4",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-es2015": "^6.9.0",
-    "babel-preset-react": "^6.11.1",
-    "bootstrap": "^3.3.6",
-    "clean-webpack-plugin": "^0.1.10",
-    "copy-webpack-plugin": "^3.0.1",
-    "css-loader": "^0.23.1",
-    "extract-text-webpack-plugin": "^1.0.1",
-    "less": "^2.7.1",
-    "less-loader": "^2.2.3",
-    "redux-devtools": "^3.3.1",
-    "style-loader": "^0.13.1",
-    "webpack": "^1.13.1",
-    "webpack-merge": "^0.14.1"
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "react-hot-loader": "^4.0.0",
+    "webpack-cli": "^2.1.3",
+    "webpack-dev-server": "^3.1.4"
   }
 }
