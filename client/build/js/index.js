@@ -23991,7 +23991,8 @@ webpackJsonp([0,1],[
 	
 	var mapStateToProps = function mapStateToProps(state, ownProps) {
 	    return {
-	        messages: state.messages
+	        messages: state.messages,
+	        stats: state.stats
 	        // userName: state.user.userName
 	    };
 	};
@@ -24104,7 +24105,10 @@ webpackJsonp([0,1],[
 	        value: function render() {
 	            var _this2 = this;
 	
-	            var messages = this.props.messages;
+	            var _props3 = this.props,
+	                messages = _props3.messages,
+	                _props3$stats = _props3.stats,
+	                stats = _props3$stats === undefined ? {} : _props3$stats;
 	
 	            return _react2.default.createElement(
 	                'div',
@@ -24120,6 +24124,28 @@ webpackJsonp([0,1],[
 	                        messages.map(function (message, index) {
 	                            return _react2.default.createElement(_MessageItem2.default, { message: message, key: index });
 	                        })
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'chat-stats' },
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        'Area: ',
+	                        stats.area
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        'Food: ',
+	                        stats.food
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        'Pricerange: ',
+	                        stats.princerange
 	                    )
 	                ),
 	                _react2.default.createElement(_MessageInput2.default, { sendMessage: this.sendMessage.bind(this) })
@@ -52676,7 +52702,7 @@ webpackJsonp([0,1],[
 	
 	
 	// module
-	exports.push([module.id, ".chat {\n  height: 100%;\n  position: absolute;\n  width: 100%;\n  background: #eeeeee;\n}\n/* Font */\n.messages {\n  font-size: 150%;\n}\n.input-message {\n  font-size: 200%;\n}\n.log {\n  color: gray;\n  font-size: 70%;\n  margin: 5px;\n  text-align: center;\n}\n/* Messages */\nul {\n  list-style: none;\n  word-wrap: break-word;\n}\n.chat-area {\n  height: 100%;\n  padding-bottom: 100px;\n}\n.messages {\n  height: 100%;\n  margin: 0;\n  overflow-y: scroll;\n  padding: 10px 20px 10px 20px;\n}\n.system-message {\n  color: gray;\n  text-align: center;\n}\n.user-name {\n  font-weight: 700;\n  overflow: hidden;\n  text-align: right;\n}\n.user-message {\n  padding: 5px;\n  font-size: 16px;\n}\n.user-message p {\n  padding: 0;\n}\n.user-message .user-name,\n.user-message .user-time {\n  padding: 0 10px;\n}\n.user-message .message-body {\n  font-size: 18px;\n  padding: 5px 10px;\n  margin: 0 20px;\n  border-radius: 4px;\n  background: #b2e380;\n}\n/* Input */\n.input-message {\n  position: absolute;\n  bottom: 0;\n  height: 100px;\n  width: 100%;\n  left: 0;\n  outline: none;\n  padding: 15px 100px 15px 25px;\n  right: 0;\n  background: #eeeeee;\n}\n.input-submit {\n  position: absolute;\n  bottom: 30px;\n  right: 15px;\n}\n", ""]);
+	exports.push([module.id, ".chat {\n  height: 100%;\n  position: absolute;\n  width: 100%;\n  background: #eeeeee;\n}\n/* Font */\n.messages {\n  font-size: 150%;\n}\n.input-message {\n  font-size: 200%;\n}\n.log {\n  color: gray;\n  font-size: 70%;\n  margin: 5px;\n  text-align: center;\n}\n/* Messages */\nul {\n  list-style: none;\n  word-wrap: break-word;\n}\n.chat-area {\n  height: 100%;\n  padding-bottom: 100px;\n}\n.chat-stats {\n  position: absolute;\n  top: 0;\n  background: #337ab7;\n  right: 0;\n  min-width: 200px;\n  padding: 9px 20px;\n  color: #fff;\n  font-weight: bold;\n}\n.messages {\n  height: 100%;\n  margin: 0;\n  overflow-y: scroll;\n  padding: 10px 20px 10px 20px;\n}\n.system-message {\n  color: gray;\n  text-align: center;\n}\n.user-name {\n  font-weight: 700;\n  overflow: hidden;\n  text-align: right;\n}\n.user-message {\n  padding: 5px;\n  font-size: 16px;\n}\n.user-message p {\n  padding: 0;\n}\n.user-message .user-name,\n.user-message .user-time {\n  padding: 0 10px;\n}\n.user-message .message-body {\n  font-size: 18px;\n  padding: 5px 10px;\n  margin: 0 20px;\n  border-radius: 4px;\n  background: #b2e380;\n}\n/* Input */\n.input-message {\n  position: absolute;\n  bottom: 0;\n  height: 100px;\n  width: 100%;\n  left: 0;\n  outline: none;\n  padding: 15px 100px 15px 25px;\n  right: 0;\n  background: #eeeeee;\n}\n.input-submit {\n  position: absolute;\n  bottom: 30px;\n  right: 15px;\n}\n", ""]);
 	
 	// exports
 

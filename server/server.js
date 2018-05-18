@@ -49,7 +49,12 @@ io.sockets.on('connection', function (socket) {
                     io.sockets.emit('newMessage',{
                         userName: robotName,
                         text: 'mock data',
-                        theano: 'happy'
+                        theano: 'happy',
+                        stats: {
+                            area: 'none',
+                            food: 'chinese',
+                            pricerage: 'cheap'
+                        }
                     })
                 // })
                 // .catch(error => { 

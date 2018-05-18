@@ -44,7 +44,7 @@ export default class Chat extends Component {
     }
 
     render() {
-        const { messages} = this.props;
+        const { messages, stats = {} } = this.props;
         return (
             <div className="chat">
                 <div className="chat-area">
@@ -53,6 +53,11 @@ export default class Chat extends Component {
                             <MessageItem message={message} key={index}/>
                         )}
                     </ul>
+                </div>
+                <div className="chat-stats">
+                    <p>Area: {stats.area}</p>
+                    <p>Food: {stats.food}</p>
+                    <p>Pricerange: {stats.princerange}</p>
                 </div>
                 <MessageInput sendMessage={this.sendMessage.bind(this)} />
             </div>

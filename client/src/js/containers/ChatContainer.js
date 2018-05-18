@@ -17,6 +17,7 @@ class ChatContainer extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         messages: state.messages,
+        stats: state.stats
         // userName: state.user.userName
     }
 }
