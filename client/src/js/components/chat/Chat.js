@@ -15,6 +15,7 @@ export default class Chat extends Component {
     componentWillMount() {
         const { receiveMessage, userJoined, userLeft } = this.props;
         this.socket.on('newMessage',function (msg) {
+            console.log('new>>>>', msg);
             receiveMessage(msg);
         });
         this.socket.on('userJoined',function (data) {
@@ -44,7 +45,7 @@ export default class Chat extends Component {
     }
 
     render() {
-        const { messages, stats = {} } = this.props;
+        const { messages, stats ={} } = this.props;
         return (
             <div className="chat">
                 <div className="chat-area">
@@ -57,7 +58,7 @@ export default class Chat extends Component {
                 <div className="chat-stats">
                     <p>Area: {stats.area}</p>
                     <p>Food: {stats.food}</p>
-                    <p>Pricerange: {stats.princerange}</p>
+                    <p>Pricerange: {stats.pricerange}</p>
                 </div>
                 <MessageInput sendMessage={this.sendMessage.bind(this)} />
             </div>

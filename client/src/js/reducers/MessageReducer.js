@@ -13,14 +13,16 @@ const initialState = {
 export default function messages(state = initialState, action) {
     switch (action.type) {
         case actionTypes.RECEIVE_MESSAGE:
+            console.log('>>>', action.message);
             const message = action.message;
             return {...state,
                 messages: [...state.messages, {
                     type: messageTypes.USER_MESSAGE,
                     text: message.text,
                     userName: message.userName,
-                    theano: message.theano
-                }]
+                    theano: message.theano,
+                }],
+                stats: message.stats
             }
         case actionTypes.USER_JOINED:
             return {...state,

@@ -23838,6 +23838,7 @@ webpackJsonp([0,1],[
 	
 	    switch (action.type) {
 	        case actionTypes.RECEIVE_MESSAGE:
+	            console.log('>>>', action.message);
 	            var message = action.message;
 	            return _extends({}, state, {
 	                messages: [].concat(_toConsumableArray(state.messages), [{
@@ -23845,7 +23846,8 @@ webpackJsonp([0,1],[
 	                    text: message.text,
 	                    userName: message.userName,
 	                    theano: message.theano
-	                }])
+	                }]),
+	                stats: message.stats
 	            });
 	        case actionTypes.USER_JOINED:
 	            return _extends({}, state, {
@@ -23990,6 +23992,7 @@ webpackJsonp([0,1],[
 	}(_react.Component);
 	
 	var mapStateToProps = function mapStateToProps(state, ownProps) {
+	    console.log(state);
 	    return {
 	        messages: state.messages,
 	        stats: state.stats
@@ -24067,6 +24070,7 @@ webpackJsonp([0,1],[
 	                userLeft = _props.userLeft;
 	
 	            this.socket.on('newMessage', function (msg) {
+	                console.log('new>>>>', msg);
 	                receiveMessage(msg);
 	            });
 	            this.socket.on('userJoined', function (data) {
@@ -24145,7 +24149,7 @@ webpackJsonp([0,1],[
 	                        'p',
 	                        null,
 	                        'Pricerange: ',
-	                        stats.princerange
+	                        stats.pricerange
 	                    )
 	                ),
 	                _react2.default.createElement(_MessageInput2.default, { sendMessage: this.sendMessage.bind(this) })

@@ -53,7 +53,7 @@ io.sockets.on('connection', function (socket) {
                         stats: {
                             area: 'none',
                             food: 'chinese',
-                            pricerage: 'cheap'
+                            pricerange: 'cheap'
                         }
                     })
                 // })
