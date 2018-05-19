@@ -16,7 +16,6 @@ app.use(async (ctx, next) => {
     console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
 });
 
-// response
 app.use(async (ctx) => {
     await ctx.render('index.html');
 });

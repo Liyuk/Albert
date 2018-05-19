@@ -19,10 +19,6 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(), // 启用 HMR
     new webpack.NamedModulesPlugin(),
-    new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css"
-    })
   ],
   resolve: {
     // 定义了解析模块路径时的配置，常用的就是extensions，可以用来指定模块的后缀，这样在引入模块时就不需要写后缀了，会自动补全
